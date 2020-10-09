@@ -1,0 +1,11 @@
+{
+ "name": "td1",
+ "type" : "project",
+ 
+ "autoload": {
+  "psr-4": {
+  "personapp\\": "src/files",
+  "conf\\" : "conf"
+  }
+ }
+}
