@@ -9,6 +9,7 @@ class Query {
     private $where = null;
     private $args = [];
     private $sql = '';
+    private $connection;
     
     public static function table( string $table) {
         $query = new Query;

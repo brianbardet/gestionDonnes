@@ -23,7 +23,7 @@ class ConnectionFactory {
 
         try {
             $dsn = "$type:dbname=$name;host=$host";
-            $this->connection = new PDO($dsn, $user, $pass,array(
+            $connection = new PDO($dsn, $user, $pass,array(
                 PDO::ATTR_PERSISTENT => true
             ));
         } catch (PDOException $e) {
@@ -33,7 +33,7 @@ class ConnectionFactory {
     }
 
     public static function getConnection(){
-        return $this->connection;
+        return $connection;
     }
 
 }
