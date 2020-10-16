@@ -31,21 +31,28 @@ class Model
     }
 
     public function __set($attr_name, $value) {
-        if(array_key_exists($attr_name, $this->_v))
+        //if(array_key_exists($attr_name, $this->_v))
             $this->_v[$attr_name] = $value;
     }
 
     public function delete() {
         if(array_key_exists(static::$primary, $this->_v))
             if(!is_null($this->_v[static::$primary])) {
-                return Query::table(static::table)
-                    ->where(static::primary, '=', $this->_v[static::primary])
+                return Query::table(static::$table)
+                    ->where(static::$primary, '=', $this->_v[static::$primary])
                     ->delete();
             }
     }
 
+    public function insert() {
+        $all = Query::table(static::$table)->insert($this->_v);
+        $new = end($all);
+        $this->_v[static::$primary] = $new[static::$primary];
+        return $this;
+    }
+
     public static function all(){
-        $all = Query::table(static::table)->get();
+        $all = Query::table(static::$table)->get();
         $tab=[];
         foreach ( $all as $elem ){
             $tab[] = new static($elem);
