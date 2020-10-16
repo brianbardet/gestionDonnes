@@ -1,6 +1,6 @@
 <?php
 
-namespace td1;
+namespace td1\orm;
 require_once 'vendor/autoload.php';
 
 class Model

@@ -4,7 +4,10 @@
 
  "autoload": {
   "psr-4": {
-   "td1\\": "orm"
+   "td1\\": "./"
   }
+ },
+ "require": {
+  "ext-pdo": "*"
  }
 }

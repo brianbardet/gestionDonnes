@@ -1,5 +1,8 @@
 <?php
-namespace td1;
+namespace td1\orm;
+use PDO;
+use PDOException;
+
 require_once 'vendor/autoload.php';
 
 class ConnectionFactory {
@@ -11,9 +14,10 @@ class ConnectionFactory {
 
     /**
      * Création de la connection à la db
-     * @param Array conf configuration
+     * @param $conf
+     * @return PDO
      */
-    public static function makeConnection(array $conf){
+    public static function makeConnection($conf){
 
         $user = $conf['user'];
         $pass = $conf['pass'];
@@ -29,11 +33,12 @@ class ConnectionFactory {
         } catch (PDOException $e) {
             echo 'Connexion échouée : ' . $e->getMessage();
         }
-        
+
+        return ConnectionFactory::$connection;
     }
 
     public static function getConnection(){
-        return $connection;
+        return ConnectionFactory::$connection;
     }
 
 }
