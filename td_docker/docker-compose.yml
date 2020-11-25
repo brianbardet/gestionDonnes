@@ -5,8 +5,8 @@ services:
     container_name: 'mongo-docker'
     environment:
       - MONGO_INITDB_DATABASE=firstmongodb
-      - MONGO_INITDB_USERNAME=root
-      - MONGO_INITDB_PASSWORD=rootpassword
+      - MONGO_INITDB_USERNAME=brian
+      - MONGO_INITDB_PASSWORD=brian
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./mongo-volume:/data/db
