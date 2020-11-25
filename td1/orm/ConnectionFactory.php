@@ -27,7 +27,7 @@ class ConnectionFactory {
 
         try {
             $dsn = "$type:dbname=$name;host=$host";
-            $connection = new PDO($dsn, $user, $pass,array(
+            ConnectionFactory::$connection = new PDO($dsn, $user, $pass,array(
                 PDO::ATTR_PERSISTENT => true
             ));
         } catch (PDOException $e) {
