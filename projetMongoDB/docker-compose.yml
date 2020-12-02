@@ -1,0 +1,35 @@
+version: '3'
+services:
+  node:
+    image: node
+    ports:
+      - "3001:3000"
+    volumes:
+      - .:/usr/src/app
+      - ./node_modules:/usr/src/outside/node_modules
+    working_dir: /usr/src/app
+    command: bash -c 'npm i && npm run dev'
+    links:
+      - db
+  db:
+    image: 'mongo'
+    environment:
+      - MONGO_INITDB_DATABASE=firstmongodb
+      - MONGO_INITDB_USERNAME=brian
+      - MONGO_INITDB_PASSWORD=brian
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: db
+      ME_CONFIG_BASICAUTH_USERNAME: brian
+      ME_CONFIG_BASICAUTH_PASSWORD: brian
+      ME_CONFIG_OPTIONS_EDITORTHEME: '3024-night'
+    depends_on:
+      - db
