@@ -9,7 +9,13 @@ const methodNotAllowed = (req, res, next) => res.status(405).json({
     message: `Méthode HTTP non autorisée`
 });
 
-app.get('/', (req, res) => res.send('Hello World'))
+app.use(express.static("public"))
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.get("/", function (req, res) {
+    res.sendFile("./index.html", { root: "./public" })
+})
 
 /*
 app.route('/commandes').get(async function (req, res,next){
