@@ -2,7 +2,9 @@
 require_once 'vendor/autoload.php';
 
 use td1\orm\Query;
+use td1\orm\Article;
 
-$q = Query::table("Article");
-
-var_dump($q);
+$all = Article::all();
+foreach ($all as $elem){
+    var_dump($elem->belongs_to("categorie","id_categ"));;
+}

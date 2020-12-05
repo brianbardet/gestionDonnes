@@ -9,8 +9,6 @@ services:
         links:
             - composer
             - db
-        networks:
-            - default
     db:
         image: mysql
         volumes:

@@ -61,6 +61,12 @@ class Model
     }
 
     public function belongs_to($table, $champ){
+        $id = $this->__get($champ);
+        $res = Query::table($table)->select(['*'])->where(Model::$primary, "=",$id)->get();
+        return new Model($res[0]);
+    }
+
+    public function has_many($table, $champ){
 
     }
 }
