@@ -60,6 +60,21 @@ class Model
         return $tab;
     }
 
+    public static function find($id=null, $columns=null){
+        $args = ['*'];
+        if($columns!=null && is_array($columns)) $args = $columns;
+        if($id!=null && is_int($id))
+            $query = Query::table(static::$table)->select($args)->where(self::$primary, "=", $id);
+        else
+            $query = Query::table(static::$table)->select($args);
+        $result = $query->get();
+        $tab=[];
+        foreach ( $result as $elem ){
+            $tab[] = new static($elem);
+        }
+        return $tab;
+    }
+
     public function belongs_to($table, $champ){
 
     }
