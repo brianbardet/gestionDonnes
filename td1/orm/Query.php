@@ -15,7 +15,7 @@ class Query {
     public static function table($table) {
         $query = new Query;
         $query->sqltable= $table;
-        $connection = ConnectionFactory::makeConnection(parse_ini_file('./conf/db.conf.ini'));
+        $query->connection = ConnectionFactory::makeConnection(parse_ini_file('./conf/db.conf.ini'));
         return $query;
     }
     
@@ -31,6 +31,7 @@ class Query {
 
    public function get() {
         //SQL de base
+
         $this->sql = 'select '. $this->fields .
                      ' from ' . $this->sqltable;
 
