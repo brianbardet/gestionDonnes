@@ -63,8 +63,8 @@ class Model
     public static function find($id=null, $columns=null){
         $args = ['*'];
         if($columns!=null && is_array($columns)) $args = $columns;
-        if($id!=null && is_int($id))
-            $query = Query::table(static::$table)->select($args)->where(self::$primary, "=", $id);
+        if($id!=null)
+            $query = Query::table(static::$table)->select($args)->where(static::$primary, "=", $id);
         else
             $query = Query::table(static::$table)->select($args);
         $result = $query->get();
