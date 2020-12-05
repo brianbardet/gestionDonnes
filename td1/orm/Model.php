@@ -81,7 +81,14 @@ class Model
         return new Model($res[0]);
     }
 
+    //Article idcateg
     public function has_many($table, $champ){
-
+        $id = $this->__get(Model::$primary);
+        $res = Query::table($table)->select(['*'])->where($champ, "=",$id)->get();
+        $tab = [];
+        foreach($res as $elem){
+            $tab[] = new Model($elem);
+        }
+        return $tab;
     }
 }
