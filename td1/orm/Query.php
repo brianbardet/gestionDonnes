@@ -15,7 +15,7 @@ class Query {
     public static function table($table) {
         $query = new Query;
         $query->sqltable= $table;
-        $connection = ConnectionFactory::makeConnection(parse_ini_file('../conf/db.conf.ini'));
+        $connection = ConnectionFactory::makeConnection(parse_ini_file('./conf/db.conf.ini'));
         return $query;
     }
     
