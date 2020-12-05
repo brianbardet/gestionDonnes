@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a8c4cce4-6996-469a-ae6c-b15086195a14" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/td1/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/td1/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/td1/orm/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/td1/orm/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/td1/orm/Query.php" beforeDir="false" afterPath="$PROJECT_DIR$/td1/orm/Query.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +47,7 @@
       <updated>1607174057384</updated>
       <workItem from="1607174058861" duration="252000" />
       <workItem from="1607174320099" duration="740000" />
-      <workItem from="1607175762196" duration="3628000" />
+      <workItem from="1607175762196" duration="5299000" />
     </task>
     <servers />
   </component>
@@ -65,5 +67,9 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2650" y="248" key="NewPhpClassDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1607176847300" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1607180991455">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1607180991455" />
   </component>
 </project>

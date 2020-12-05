@@ -25,7 +25,7 @@ class Query {
     }
 
    public function where($col, $op, $val) {
-        $where[] = [$col,$op,$val];
+        $this->where[] = [$col,$op,$val];
         return $this;
    }
 
@@ -37,9 +37,15 @@ class Query {
 
         //Gestion where
         if(isset($this->where)){
+            $where = false;
             foreach($this->where as $key => $cond){
-                $this->sql .= ' where ' . $cond[0] . ' ' . $cond[1] . ' :' . $key;
-                $this->args[':'.$key] = $cond[2]; 
+                if($where) {
+                    $this->sql .= ' and ' . $cond[0] . ' ' . $cond[1] . ' :' . $key;
+                } else {
+                    $this->sql .= ' where ' . $cond[0] . ' ' . $cond[1] . ' :' . $key;
+                    $where = true;
+                }
+                $this->args[':'.$key] = $cond[2];
             }
         }
 

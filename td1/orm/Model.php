@@ -62,11 +62,24 @@ class Model
 
     public static function find($id=null, $columns=null){
         $args = ['*'];
-        if($columns!=null && is_array($columns)) $args = $columns;
-        if($id!=null)
-            $query = Query::table(static::$table)->select($args)->where(static::$primary, "=", $id);
-        else
+        if($columns!==null && is_array($columns)) $args = $columns;
+        if($id!==null) {
             $query = Query::table(static::$table)->select($args);
+            if (is_array($id)) {
+                if (is_array($id[0]) && count($id[0]) == 3) {
+                    foreach ($id as $cond){
+                        $query = $query->where($cond[0], $cond[1], $cond[2]);
+                    }
+                } else {
+                    $query = $query->where($id[0], $id[1], $id[2]);
+                }
+            } else {
+                $query = $query->where(static::$primary,'=' , $id);
+            }
+        }
+        else{
+            $query = Query::table(static::$table)->select($args);
+        }
         $result = $query->get();
         $tab=[];
         foreach ( $result as $elem ){
