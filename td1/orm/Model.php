@@ -88,7 +88,7 @@ class Model
         return $tab;
     }
 
-    public static function first($id, $columns){
+    public static function first($id=null, $columns=null){
         return self::find($id, $columns)[0];
     }
 

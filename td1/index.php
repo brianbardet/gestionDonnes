@@ -3,6 +3,6 @@ require_once 'vendor/autoload.php';
 
 use td1\orm\Article;
 use td1\orm\Categorie;
-$all = Article::first([['id', '>=', 64],['nom', 'like', '%v%l%']], ['id', 'nom']);
+$all = Article::first(['id', '>=', 64]);
 
 var_dump($all);
