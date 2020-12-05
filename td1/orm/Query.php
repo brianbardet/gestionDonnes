@@ -37,7 +37,7 @@ class Query {
 
         //Gestion where
         if(isset($this->where)){
-            foreach($this->where as $cond){
+            foreach($this->where as $key => $cond){
                 $this->sql .= ' where ' . $cond[0] . ' ' . $cond[1] . ' :' . $key;
                 $this->args[':'.$key] = $cond[2]; 
             }
