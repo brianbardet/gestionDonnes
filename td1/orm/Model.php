@@ -52,11 +52,15 @@ class Model
     }
 
     public static function all(){
-        $all = Query::table(static::$table)->get();
+        $all = Query::table(static::$table)->select(['*'])->get();
         $tab=[];
         foreach ( $all as $elem ){
             $tab[] = new static($elem);
         }
         return $tab;
+    }
+
+    public function belongs_to($table, $champ){
+
     }
 }

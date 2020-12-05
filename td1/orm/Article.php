@@ -9,10 +9,11 @@ class Article extends Model
     /**
      *  Nom de la table
      */
-    protected static $table="Article";
+    protected static $table="article";
 
     /**
      *  PrimaryKey de la table
      */
     protected static $primary = "id";
+
 }
