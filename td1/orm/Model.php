@@ -88,6 +88,10 @@ class Model
         return $tab;
     }
 
+    public static function first($id, $columns){
+        return self::find($id, $columns)[0];
+    }
+
     public function belongs_to($table, $champ){
         $id = $this->__get($champ);
         $res = Query::table($table)->select(['*'])->where(Model::$primary, "=",$id)->get();
