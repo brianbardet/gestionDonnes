@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8c4cce4-6996-469a-ae6c-b15086195a14" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/td1/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/td1/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/td1/conf/db.conf.ini" beforeDir="false" afterPath="$PROJECT_DIR$/td1/conf/db.conf.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/td1/orm/Query.php" beforeDir="false" afterPath="$PROJECT_DIR$/td1/orm/Query.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +43,8 @@
       <option name="presentableId" value="Default" />
       <updated>1607174057384</updated>
       <workItem from="1607174058861" duration="252000" />
-      <workItem from="1607174320099" duration="550000" />
+      <workItem from="1607174320099" duration="740000" />
+      <workItem from="1607175762196" duration="1395000" />
     </task>
     <servers />
   </component>
@@ -61,5 +60,9 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2656" y="437" key="ComposerInitDialogKey/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1607174255260" />
+    <state x="2650" y="248" key="NewPhpClassDialog" timestamp="1607176847300">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2650" y="248" key="NewPhpClassDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1607176847300" />
   </component>
 </project>
