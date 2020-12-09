@@ -1,16 +1,16 @@
 {
   "name": "commande",
   "version": "1.0.0",
-  "description": "API de Commande du projet Le Bon Sandwich",
+  "description": "Projet mongoDB",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon --legacy-watch app.js"
   },
-  "author": "Alexandre Leroux <alex@sherpa.one> (https://sherpa.one)",
   "license": "UNLICENSED",
   "dependencies": {
+    "axios": "^0.21.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.3"
   },
