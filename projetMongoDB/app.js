@@ -27,27 +27,20 @@ app.get("/", function (req, res) {
 app.route('/interet/update').get(async function (req, res,next){
 
     try {
+
         const response = await axios.get('https://geoservices.grand-nancy.org/arcgis/rest/services/public/VOIRIE_Parking/MapServer/0/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=nom%2Cadresse%2Cplaces%2Ccapacite&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentsOnly=false&datumTransformation=&parameterValues=&rangeValues=&f=pjson');
-        res.json(response.data.features);
+        const client = await MongoClient.connect(urlMongo,{ useUnifiedTopology: true });
 
         //Récupération données déjà existant
         let noms = []
-        
-        await MongoClient.connect(urlMongo, { useUnifiedTopology: true },async function(err, db) {
-            if (err) throw err;
-            var dbo = db.db("firstmongodb");
-            dbo.collection("interet").find({}).toArray(function(err, result) {
-                if (err) throw err;
-                db.close();
-                result.forEach(function(elem){
-                    console.log(elem.name)
-                    noms.push(elem.name)
-                })
-                console.log(noms)
-            });
-        });
 
-        console.log(noms)
+        let dbo = client.db("firstmongodb");
+        let result = await dbo.collection("interet").find({}).toArray();
+        result.forEach(function (elem) {
+            noms.push(elem['name'])
+        })
+
+        console.log(noms);
 
         //Traitement des données de réponse
         let data = response.data.features
@@ -68,8 +61,35 @@ app.route('/interet/update').get(async function (req, res,next){
                 "type" : type
             }
 
+            if(!noms.includes(name)){
+                //insert elem
+                MongoClient.connect(urlMongo, { useUnifiedTopology: true },function(err, db) {
+                    if (err) throw err;
+                    let dbo = db.db("firstmongodb");
+                    dbo.collection("interet").insertOne(obj, function(err, res) {
+                        if (err) throw err;
+                        console.log("1 document inserted");
+                        db.close();
+                    });
+                });
+            }else{
+                //update elem
+                MongoClient.connect(urlMongo, { useUnifiedTopology: true },function(err, db) {
+                    if (err) throw err;
+                    let dbo = db.db("firstmongodb");
+                    let myquery = { "name" : name }
+                    let newvalues = { $set: obj };
+                    dbo.collection("interet").updateOne(myquery, newvalues, function(err, res) {
+                        if (err) throw err;
+                        console.log("1 document updated");
+                        db.close();
+                    });
+                });
+            }
         })
 
+        await client.close();
+        res.json(response.data.features);
     } catch (error) {
         console.error(error);
     }
@@ -77,20 +97,6 @@ app.route('/interet/update').get(async function (req, res,next){
 }).all(methodNotAllowed);
 
 
-/*
-Récupération données
-
-MongoClient.connect(urlMongo, { useUnifiedTopology: true },function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("firstmongodb");
-        dbo.collection("interet").find({}).toArray(function(err, result) {
-            if (err) throw err;
-            db.close();
-            res.json(result);
-        });
-    });
-
- */
 app.use((req, res, next) => {
     return res.status(400).json({
         type: "error",

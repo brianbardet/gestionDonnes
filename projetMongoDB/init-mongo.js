@@ -22,7 +22,7 @@ let obj = [
         "type": "Parking"
     },
     {
-        "name": "Institut de Cancerologi",
+        "name": "Institut de Cancerologie",
         "adresse": "6 Avenue de Bourgogne",
         "localisation": {
             "x": 6.144662673632979,
