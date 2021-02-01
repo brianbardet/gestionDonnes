@@ -96,6 +96,18 @@ app.route('/interet/update').get(async function (req, res,next){
 
 }).all(methodNotAllowed);
 
+app.route('/interets').get(async function (req, res,next){
+    try {
+        const client = await MongoClient.connect(urlMongo,{ useUnifiedTopology: true });
+        let dbo = client.db("firstmongodb");
+        let result = await dbo.collection("interet").find({}).toArray();
+        res.json(result)
+    }catch(error){
+        console.error(error);
+    }
+}).all(methodNotAllowed);
+
+
 
 app.use((req, res, next) => {
     return res.status(400).json({
